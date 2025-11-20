@@ -110,75 +110,6 @@
         .nav-link.active::after {
             width: 100%;
         }
-        
-        /* Membership Slider Styles */
-        .membership-slider {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-        }
-        
-        .membership-slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        
-        .membership-slide {
-            min-width: 100%;
-            padding: 2rem;
-        }
-        
-        .membership-indicators {
-            display: flex;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-        
-        .membership-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(212, 175, 55, 0.3);
-            margin: 0 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .membership-indicator.active {
-            background-color: #d4af37;
-            transform: scale(1.2);
-        }
-        
-        .membership-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(212, 175, 55, 0.8);
-            color: #0a0a0a;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-        
-        .membership-nav:hover {
-            background: #d4af37;
-            transform: translateY(-50%) scale(1.1);
-        }
-        
-        .membership-prev {
-            left: 10px;
-        }
-        
-        .membership-next {
-            right: 10px;
-        }
     </style>
 </head>
 <body class="bg-dark-bg text-white font-sans">
@@ -190,7 +121,6 @@
                 <div class="hidden md:flex space-x-8">
                     <a href="#" class="nav-link active" onclick="showPage('home')">Beranda</a>
                     <a href="#" class="nav-link" onclick="showPage('products')">Produk</a>
-                    <a href="#" class="nav-link" onclick="showPage('membership')">Membership</a>
                     <a href="#" class="nav-link" onclick="showPage('order')">Pemesanan</a>
                     <a href="#" class="nav-link" onclick="showPage('contact')">Kontak</a>
                 </div>
@@ -205,7 +135,6 @@
             <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
                 <a href="#" class="block py-2 nav-link" onclick="showPage('home')">Beranda</a>
                 <a href="#" class="block py-2 nav-link" onclick="showPage('products')">Produk</a>
-                <a href="#" class="block py-2 nav-link" onclick="showPage('membership')">Membership</a>
                 <a href="#" class="block py-2 nav-link" onclick="showPage('order')">Pemesanan</a>
                 <a href="#" class="block py-2 nav-link" onclick="showPage('contact')">Kontak</a>
             </div>
@@ -231,8 +160,8 @@
                             <button onclick="showPage('products')" class="gradient-gold text-dark-bg px-8 py-4 rounded-lg font-semibold hover:scale-105 transition-all duration-300 pulse-gold">
                                 Jelajahi Produk
                             </button>
-                            <button onclick="showPage('membership')" class="border-2 border-gold text-gold px-8 py-4 rounded-lg font-semibold hover:bg-gold hover:text-dark-bg transition-all duration-300">
-                                Lihat Membership
+                            <button onclick="showPage('contact')" class="border-2 border-gold text-gold px-8 py-4 rounded-lg font-semibold hover:bg-gold hover:text-dark-bg transition-all duration-300">
+                                Hubungi Kami
                             </button>
                         </div>
                     </div>
@@ -432,272 +361,206 @@
         </section>
     </div>
 
-    <!-- Membership Page -->
-    <div id="membership" class="page pt-20">
+    <!-- Order Page -->
+    <div id="order" class="page pt-20">
         <section class="py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gradient mb-4">Program Membership</h2>
-                    <p class="text-gray-300 text-lg">Nikmati berbagai keuntungan eksklusif dengan menjadi member Nal Store</p>
+                    <h2 class="text-4xl font-bold text-gradient mb-4">Cara Pemesanan</h2>
+                    <p class="text-gray-300 text-lg">Proses pemesanan yang mudah dan aman di Nal Store</p>
                 </div>
-
-                <!-- Membership Slider -->
-                <div class="glass-effect rounded-2xl p-6 mb-16">
-                    <div class="membership-slider">
-                        <div class="membership-slides" id="membershipSlides">
-                            <!-- Slide 1: Silver Membership -->
-                            <div class="membership-slide">
-                                <div class="grid md:grid-cols-2 gap-8 items-center">
-                                    <div>
-                                        <div class="flex items-center mb-6">
-                                            <div class="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center mr-4">
-                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-2xl font-bold text-gray-300">Silver Membership</h3>
-                                                <p class="text-gold">Gratis - Daftar Sekarang</p>
-                                            </div>
-                                        </div>
-                                        <ul class="space-y-3 text-gray-300 mb-6">
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Notifikasi promo dan diskon eksklusif
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Akses ke event dan workshop online
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Poin reward untuk setiap pembelian
-                                            </li>
-                                        </ul>
-                                        <button onclick="showPage('contact')" class="w-full bg-gray-600 hover:bg-gray-700 text-white py-3 rounded-lg font-semibold transition-all">
-                                            Daftar Sekarang
-                                        </button>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="inline-block p-6 bg-gray-800 rounded-2xl">
-                                            <div class="text-5xl font-bold text-gray-300 mb-2">0%</div>
-                                            <div class="text-gray-400">Biaya Keanggotaan</div>
-                                        </div>
-                                    </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 mb-20">
+                    <div class="glass-effect p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-gold mb-6">Form Pemesanan</h3>
+                        <form id="mainOrderForm" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Nama Lengkap *</label>
+                                    <input type="text" name="nama" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Email *</label>
+                                    <input type="email" name="email" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
                                 </div>
                             </div>
-
-                            <!-- Slide 2: Gold Membership -->
-                            <div class="membership-slide">
-                                <div class="grid md:grid-cols-2 gap-8 items-center">
-                                    <div>
-                                        <div class="flex items-center mb-6">
-                                            <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center mr-4">
-                                                <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-2xl font-bold text-gold">Gold Membership</h3>
-                                                <p class="text-gold-light">Rp 299.000/tahun</p>
-                                            </div>
-                                        </div>
-                                        <ul class="space-y-3 text-gray-300 mb-6">
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Semua benefit Silver Membership
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Diskon tambahan 5% untuk semua produk
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Garansi extended gratis 6 bulan
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Prioritas layanan customer service
-                                            </li>
-                                        </ul>
-                                        <button onclick="openMembershipModal('Gold Membership', 299000)" class="w-full gradient-gold text-dark-bg py-3 rounded-lg font-semibold hover:scale-105 transition-all">
-                                            Daftar Sekarang
-                                        </button>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="inline-block p-6 bg-gradient-to-br from-gold to-gold-dark rounded-2xl">
-                                            <div class="text-5xl font-bold text-dark-bg mb-2">5%</div>
-                                            <div class="text-dark-bg font-semibold">Diskon Tambahan</div>
-                                        </div>
-                                    </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Nomor WhatsApp *</label>
+                                    <input type="tel" name="whatsapp" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Pilih Produk *</label>
+                                    <select name="produk" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
+                                        <option value="">-- Pilih Laptop --</option>
+                                        <option value="ASUS ROG Strix G15|25999000">ASUS ROG Strix G15 - Rp 25.999.000</option>
+                                        <option value="Lenovo ThinkPad X1|22499000">Lenovo ThinkPad X1 - Rp 22.499.000</option>
+                                        <option value="MacBook Pro M2|32999000">MacBook Pro M2 - Rp 32.999.000</option>
+                                        <option value="MSI Gaming GE76|45999000">MSI Gaming GE76 - Rp 45.999.000</option>
+                                        <option value="Dell XPS 13 Plus|28999000">Dell XPS 13 Plus - Rp 28.999.000</option>
+                                        <option value="HP EliteBook 840|18999000">HP EliteBook 840 - Rp 18.999.000</option>
+                                    </select>
                                 </div>
                             </div>
-
-                            <!-- Slide 3: Platinum Membership -->
-                            <div class="membership-slide">
-                                <div class="grid md:grid-cols-2 gap-8 items-center">
-                                    <div>
-                                        <div class="flex items-center mb-6">
-                                            <div class="w-12 h-12 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full flex items-center justify-center mr-4">
-                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-2xl font-bold text-gray-300">Platinum Membership</h3>
-                                                <p class="text-gray-400">Rp 599.000/tahun</p>
-                                            </div>
-                                        </div>
-                                        <ul class="space-y-3 text-gray-300 mb-6">
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Semua benefit Gold Membership
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Diskon tambahan 10% untuk semua produk
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Garansi extended gratis 1 tahun
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Free ongkir untuk semua pembelian
-                                            </li>
-                                            <li class="flex items-center">
-                                                <svg class="w-5 h-5 text-gold mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                Konsultasi teknis gratis
-                                            </li>
-                                        </ul>
-                                        <button onclick="openMembershipModal('Platinum Membership', 599000)" class="w-full bg-gradient-to-br from-gray-600 to-gray-800 text-white py-3 rounded-lg font-semibold hover:scale-105 transition-all">
-                                            Daftar Sekarang
-                                        </button>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="inline-block p-6 bg-gradient-to-br from-gray-400 to-gray-600 rounded-2xl">
-                                            <div class="text-5xl font-bold text-white mb-2">10%</div>
-                                            <div class="text-white font-semibold">Diskon Tambahan</div>
-                                        </div>
-                                    </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Jumlah *</label>
+                                    <input type="number" name="jumlah" min="1" value="1" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Total Harga</label>
+                                    <div id="mainTotalPrice" class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-gold font-bold">Rp 0</div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Alamat Lengkap *</label>
+                                <textarea name="alamat" rows="3" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none" placeholder="Masukkan alamat lengkap untuk pengiriman"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Catatan Tambahan</label>
+                                <textarea name="catatan" rows="2" class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none" placeholder="Spesifikasi khusus, warna, atau permintaan lainnya"></textarea>
+                            </div>
+                            <button type="submit" class="w-full gradient-gold text-dark-bg py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-all pulse-gold">
+                                Pesan Sekarang
+                            </button>
+                        </form>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-6">Mengapa Pesan di Nal Store?</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gold mb-2">Garansi Resmi</h4>
+                                    <p class="text-gray-300">Semua produk bergaransi resmi dari distributor dengan layanan after-sales terpercaya.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gold mb-2">Pengiriman Aman</h4>
+                                    <p class="text-gray-300">Packaging khusus dengan bubble wrap dan asuransi pengiriman ke seluruh Indonesia.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gold mb-2">Konsultasi Gratis</h4>
+                                    <p class="text-gray-300">Tim ahli siap membantu memilih laptop sesuai kebutuhan dan budget Anda.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+                                        <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gold mb-2">Cicilan 0%</h4>
+                                    <p class="text-gray-300">Tersedia cicilan 0% dengan kartu kredit untuk kemudahan pembayaran Anda.</p>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Navigation Buttons -->
-                        <button class="membership-nav membership-prev" onclick="prevMembershipSlide()">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                        <button class="membership-nav membership-next" onclick="nextMembershipSlide()">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <!-- Indicators -->
-                    <div class="membership-indicators" id="membershipIndicators">
-                        <span class="membership-indicator active" onclick="goToMembershipSlide(0)"></span>
-                        <span class="membership-indicator" onclick="goToMembershipSlide(1)"></span>
-                        <span class="membership-indicator" onclick="goToMembershipSlide(2)"></span>
+                        <div class="mt-8 p-6 bg-gradient-to-r from-gold/10 to-gold-light/10 rounded-2xl border border-gold/20">
+                            <h4 class="text-lg font-bold text-gold mb-3">📞 Butuh Bantuan?</h4>
+                            <p class="text-gray-300 mb-4">Tim customer service kami siap membantu Anda 24/7</p>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <a href="https://wa.me/6285757819440" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-all">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                    </svg>
+                                    <span>WhatsApp</span>
+                                </a>
+                                <a href="tel:+622112345678" class="flex items-center justify-center space-x-2 border-2 border-gold text-gold hover:bg-gold hover:text-dark-bg px-4 py-2 rounded-lg transition-all">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                    </svg>
+                                    <span>Telepon</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Membership Benefits -->
-                <div class="grid md:grid-cols-3 gap-8 mb-16">
-                    <div class="glass-effect p-6 rounded-2xl text-center">
-                        <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
-                            </svg>
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gold mb-6">Metode Pembayaran</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4 p-4 glass-effect rounded-lg">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+                                        <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-gold font-semibold">Transfer Bank</div>
+                                    <div class="text-gray-300 text-sm">BCA, Mandiri, BNI, BRI</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 p-4 glass-effect rounded-lg">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-gold font-semibold">E-Wallet</div>
+                                    <div class="text-gray-300 text-sm">OVO, GoPay, DANA, ShopeePay</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 p-4 glass-effect rounded-lg">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm0 2h12v8H4V6z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-gold font-semibold">Cicilan 0%</div>
+                                    <div class="text-gray-300 text-sm">Kartu kredit 3, 6, 12 bulan</div>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-gold mb-2">Harga Spesial</h3>
-                        <p class="text-gray-300">Diskon eksklusif untuk member dengan berbagai tingkatan benefit</p>
                     </div>
-                    <div class="glass-effect p-6 rounded-2xl text-center">
-                        <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gold mb-2">Garansi Extended</h3>
-                        <p class="text-gray-300">Perpanjangan garansi gratis untuk member Gold dan Platinum</p>
-                    </div>
-                    <div class="glass-effect p-6 rounded-2xl text-center">
-                        <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gold mb-2">Prioritas Layanan</h3>
-                        <p class="text-gray-300">Layanan customer service khusus dan prioritas penanganan</p>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" 
+                             alt="Proses Pemesanan" 
+                             class="w-full h-auto rounded-2xl shadow-2xl"
+                             onerror="this.src=''; this.alt='Proses pemesanan yang mudah'; this.style.display='none';">
                     </div>
                 </div>
 
-                <!-- FAQ Section -->
-                <div class="glass-effect p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-gold mb-6 text-center">Pertanyaan Umum</h3>
-                    <div class="space-y-4">
-                        <div class="border-b border-gold-dark pb-4">
-                            <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(0)">
-                                <span class="text-gold font-semibold">Bagaimana cara mendaftar membership?</span>
-                                <svg class="w-5 h-5 text-gold transform transition-transform" id="faqIcon0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                            <div id="faqAnswer0" class="mt-2 text-gray-300 hidden">
-                                Anda dapat mendaftar membership dengan menghubungi customer service kami melalui WhatsApp atau mengisi form di halaman kontak. Untuk membership Silver, pendaftaran gratis. Untuk Gold dan Platinum, biaya keanggotaan akan dibebankan setelah konfirmasi.
-                            </div>
+                <div class="glass-effect p-8 rounded-2xl text-center">
+                    <h3 class="text-2xl font-bold text-gold mb-4">Jaminan Kami</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div>
+                            <div class="text-3xl mb-2">🛡️</div>
+                            <div class="text-gold font-semibold mb-2">Garansi Resmi</div>
+                            <div class="text-gray-300 text-sm">Semua produk bergaransi resmi dari distributor</div>
                         </div>
-                        <div class="border-b border-gold-dark pb-4">
-                            <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(1)">
-                                <span class="text-gold font-semibold">Apakah membership dapat diperpanjang?</span>
-                                <svg class="w-5 h-5 text-gold transform transition-transform" id="faqIcon1" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                            <div id="faqAnswer1" class="mt-2 text-gray-300 hidden">
-                                Ya, membership dapat diperpanjang secara otomatis. Kami akan mengirimkan notifikasi 30 hari sebelum masa berlaku berakhir. Anda dapat memilih untuk memperpanjang atau tidak.
-                            </div>
+                        <div>
+                            <div class="text-3xl mb-2">🚚</div>
+                            <div class="text-gold font-semibold mb-2">Pengiriman Aman</div>
+                            <div class="text-gray-300 text-sm">Packaging khusus dengan asuransi pengiriman</div>
                         </div>
-                        <div class="border-b border-gold-dark pb-4">
-                            <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(2)">
-                                <span class="text-gold font-semibold">Apakah diskon membership dapat digabung dengan promo lain?</span>
-                                <svg class="w-5 h-5 text-gold transform transition-transform" id="faqIcon2" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                            <div id="faqAnswer2" class="mt-2 text-gray-300 hidden">
-                                Diskon membership tidak dapat digabungkan dengan promo atau diskon lainnya. Sistem akan secara otomatis memberikan diskon terbaik untuk Anda.
-                            </div>
+                        <div>
+                            <div class="text-3xl mb-2">💬</div>
+                            <div class="text-gold font-semibold mb-2">Support 24/7</div>
+                            <div class="text-gray-300 text-sm">Tim customer service siap membantu kapan saja</div>
                         </div>
                     </div>
                 </div>
@@ -705,35 +568,194 @@
         </section>
     </div>
 
-    <!-- Order Page -->
-    <div id="order" class="page pt-20">
-        <!-- Konten order page yang sudah ada -->
-        <!-- ... -->
-    </div>
-
     <!-- Contact Page -->
     <div id="contact" class="page pt-20">
-        <!-- Konten contact page yang sudah ada -->
-        <!-- ... -->
+        <!-- About Section -->
+        <section class="py-20 bg-dark-card">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gradient mb-4">Tentang Nal Store</h2>
+                    <p class="text-gray-300 text-lg">Mitra terpercaya untuk kebutuhan laptop premium Anda</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gold mb-6">Visi & Misi Kami</h3>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Nal Store hadir sebagai solusi terpercaya untuk kebutuhan laptop premium di Indonesia. Kami berkomitmen menyediakan produk berkualitas tinggi dengan layanan terbaik.
+                        </p>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Dengan pengalaman lebih dari 10 tahun di industri teknologi, kami memahami kebutuhan pelanggan dan selalu menghadirkan inovasi terdepan.
+                        </p>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-gradient mb-2">10+</div>
+                                <div class="text-gray-300">Tahun Pengalaman</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-gradient mb-2">50K+</div>
+                                <div class="text-gray-300">Pelanggan Puas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop" 
+                             alt="Tim Nal Store" 
+                             class="w-full h-auto rounded-2xl shadow-2xl"
+                             onerror="this.src=''; this.alt='Tim profesional Nal Store'; this.style.display='none';">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-effect p-8 rounded-2xl text-center">
+                        <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gold mb-4">Kepuasan Pelanggan</h3>
+                        <p class="text-gray-300">Prioritas utama kami adalah kepuasan dan kepercayaan pelanggan</p>
+                    </div>
+                    <div class="glass-effect p-8 rounded-2xl text-center">
+                        <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gold mb-4">Kualitas Premium</h3>
+                        <p class="text-gray-300">Hanya menyediakan produk dengan standar kualitas internasional</p>
+                    </div>
+                    <div class="glass-effect p-8 rounded-2xl text-center">
+                        <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gold mb-4">Layanan Terpadu</h3>
+                        <p class="text-gray-300">Dari konsultasi hingga after-sales service yang komprehensif</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gradient mb-4">Hubungi Kami</h2>
+                    <p class="text-gray-300 text-lg">Siap membantu Anda menemukan laptop yang tepat</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-6">Informasi Kontak</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-gold font-semibold">Email</div>
+                                    <div class="text-gray-300">info@nalstore.co.id</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-gold font-semibold">Telepon</div>
+                                    <div class="text-gray-300">085757819440 (Ainal)</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-gold font-semibold">Alamat</div>
+                                    <div class="text-gray-300">Jl.H.Kalla Lr 1.c No 5.A, Makassar</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 gradient-gold rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-gold font-semibold">Jam Operasional</div>
+                                    <div class="text-gray-300">Senin - Sabtu: 09:00 - 18:00</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="text-xl font-bold text-gold mb-4">Ikuti Kami</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.instagram.com/nallxzz_13?igsh=YzBtd3d1MWNmNTc=" target="_blank" rel="noopener noreferrer" class="w-10 h-10 gradient-gold rounded-full flex items-center justify-center hover:scale-110 transition-all">
+                                    <svg class="w-5 h-5 text-dark-bg" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-gold mb-6">Kirim Pesan</h3>
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-300 mb-2">Nama Lengkap</label>
+                                <input type="text" name="nama" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Email</label>
+                                <input type="email" name="email" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Nomor WhatsApp</label>
+                                <input type="tel" name="whatsapp" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Pesan</label>
+                                <textarea name="pesan" rows="4" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full gradient-gold text-dark-bg py-3 rounded-lg font-semibold hover:scale-105 transition-all">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- Membership Modal -->
-    <div id="membershipModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <!-- Order Modal -->
+    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
         <div class="glass-effect rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold text-gold">Form Pendaftaran Membership</h3>
-                <button onclick="closeMembershipModal()" class="text-gray-400 hover:text-white">
+                <h3 class="text-2xl font-bold text-gold">Form Pemesanan</h3>
+                <button onclick="closeOrderModal()" class="text-gray-400 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
             
-            <div id="selectedMembership" class="mb-6 p-4 bg-dark-card rounded-lg">
-                <!-- Membership info will be inserted here -->
+            <div id="selectedProduct" class="mb-6 p-4 bg-dark-card rounded-lg">
+                <!-- Product info will be inserted here -->
             </div>
             
-            <form id="membershipForm" class="space-y-4">
+            <form id="orderForm" class="space-y-4">
                 <div>
                     <label class="block text-gray-300 mb-2">Nama Lengkap *</label>
                     <input type="text" name="nama" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
@@ -750,38 +772,104 @@
                     <label class="block text-gray-300 mb-2">Alamat Lengkap *</label>
                     <textarea name="alamat" rows="3" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none"></textarea>
                 </div>
+                <div>
+                    <label class="block text-gray-300 mb-2">Jumlah *</label>
+                    <input type="number" name="jumlah" min="1" value="1" required class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-gray-300 mb-2">Catatan Tambahan</label>
+                    <textarea name="catatan" rows="2" class="w-full bg-dark-card border border-gold-dark rounded-lg px-4 py-3 text-white focus:border-gold focus:outline-none"></textarea>
+                </div>
                 
                 <div class="border-t border-gold-dark pt-4">
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-gray-300">Biaya Keanggotaan:</span>
-                        <span id="membershipPrice" class="text-2xl font-bold text-gradient">Rp 0</span>
+                        <span class="text-gray-300">Total Harga:</span>
+                        <span id="totalPrice" class="text-2xl font-bold text-gradient">Rp 0</span>
                     </div>
                 </div>
                 
                 <button type="submit" class="w-full gradient-gold text-dark-bg py-3 rounded-lg font-semibold hover:scale-105 transition-all">
-                    Daftar Sekarang
+                    Pesan Sekarang
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- Order Modal -->
-    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <!-- Konten order modal yang sudah ada -->
-        <!-- ... -->
-    </div>
-
     <!-- Success Modal -->
     <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <!-- Konten success modal yang sudah ada -->
-        <!-- ... -->
+        <div class="glass-effect rounded-2xl p-8 max-w-md w-full text-center">
+            <div class="w-16 h-16 gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-dark-bg" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gold mb-4">Pesanan Berhasil!</h3>
+            <p class="text-gray-300 mb-6">Terima kasih! Pesanan Anda telah diterima dan tersimpan di sistem kami. Tim kami akan segera menghubungi Anda melalui WhatsApp untuk konfirmasi.</p>
+            <button onclick="closeSuccessModal()" class="gradient-gold text-dark-bg px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all">
+                Tutup
+            </button>
+        </div>
     </div>
     
     <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray-700 py-12">
-        <!-- Konten footer yang sudah ada -->
-        <!-- ... -->
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-gold mb-4">Nal Store</h3>
+                    <p class="text-gray-400 mb-4">Laptop premium dengan kualitas terbaik dan garansi resmi untuk kebutuhan computing Anda.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://wa.me/6285757819440" target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-700 p-3 rounded-full transition-colors">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/nallxzz_13?igsh=YzBtd3d1MWNmNTc=" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 p-3 rounded-full transition-colors">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Kategori Laptop</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" onclick="showPage('products')" class="hover:text-gold transition-colors">Gaming Laptop</a></li>
+                        <li><a href="#" onclick="showPage('products')" class="hover:text-gold transition-colors">Business Laptop</a></li>
+                        <li><a href="#" onclick="showPage('products')" class="hover:text-gold transition-colors">Ultrabook</a></li>
+                        <li><a href="#" onclick="showPage('products')" class="hover:text-gold transition-colors">MacBook</a></li>
+                        <li><a href="#" onclick="showPage('products')" class="hover:text-gold transition-colors">Custom Build</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" onclick="showPage('order')" class="hover:text-gold transition-colors">Pemesanan Online</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="hover:text-gold transition-colors">Konsultasi Produk</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Garansi Resmi</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Pengiriman Nasional</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Informasi</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" onclick="showPage('contact')" class="hover:text-gold transition-colors">Tentang Nal Store</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Syarat & Ketentuan</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="hover:text-gold transition-colors">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2025 Nal Store. All rights reserved. Premium Laptop Store by Ainal.</p>
+            </div>
+        </div>
     </footer>
+
 
     <script>
         // Google Sheets configuration - GANTI URL INI DENGAN URL GOOGLE APPS SCRIPT ANDA
@@ -857,19 +945,6 @@ Tim customer service kami akan segera merespons pertanyaan Anda dalam waktu 1x24
 Terima kasih,
 *Nal Store*
 Premium Laptop Store`;
-                } else if (type === 'membership') {
-                    phone = data.whatsapp.replace(/\D/g, '');
-                    message = `Halo ${data.nama}, terima kasih telah mendaftar membership di Nal Store!
-
-📋 *Detail Membership:*
-Tipe: ${data.membership}
-Biaya: Rp ${data.harga.toLocaleString('id-ID')}
-
-Kami akan segera memproses pendaftaran Anda dan menghubungi Anda untuk konfirmasi lebih lanjut.
-
-Terima kasih,
-*Nal Store*
-Premium Laptop Store`;
                 }
                 
                 // Send via Fonnte API
@@ -903,8 +978,6 @@ Premium Laptop Store`;
         
         // Global variables
         let currentProduct = {};
-        let currentMembership = {};
-        let currentMembershipSlide = 0;
         
         // Navigation functions
         function showPage(pageId) {
@@ -956,73 +1029,6 @@ Premium Laptop Store`;
             });
         }
         
-        // Membership Slider Functions
-        function nextMembershipSlide() {
-            const slides = document.querySelectorAll('.membership-slide');
-            currentMembershipSlide = (currentMembershipSlide + 1) % slides.length;
-            updateMembershipSlider();
-        }
-        
-        function prevMembershipSlide() {
-            const slides = document.querySelectorAll('.membership-slide');
-            currentMembershipSlide = (currentMembershipSlide - 1 + slides.length) % slides.length;
-            updateMembershipSlider();
-        }
-        
-        function goToMembershipSlide(index) {
-            currentMembershipSlide = index;
-            updateMembershipSlider();
-        }
-        
-        function updateMembershipSlider() {
-            const slides = document.getElementById('membershipSlides');
-            const indicators = document.querySelectorAll('.membership-indicator');
-            
-            // Update slide position
-            slides.style.transform = `translateX(-${currentMembershipSlide * 100}%)`;
-            
-            // Update indicators
-            indicators.forEach((indicator, index) => {
-                if (index === currentMembershipSlide) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-        }
-        
-        // FAQ Toggle
-        function toggleFAQ(index) {
-            const answer = document.getElementById(`faqAnswer${index}`);
-            const icon = document.getElementById(`faqIcon${index}`);
-            
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                answer.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-        
-        // Membership modal functions
-        function openMembershipModal(membershipName, price) {
-            currentMembership = { name: membershipName, price: price };
-            
-            document.getElementById('selectedMembership').innerHTML = `
-                <h4 class="text-lg font-bold text-gold mb-2">${membershipName}</h4>
-                <p class="text-2xl font-bold text-gradient">Rp ${price.toLocaleString('id-ID')}/tahun</p>
-            `;
-            
-            document.getElementById('membershipPrice').textContent = `Rp ${price.toLocaleString('id-ID')}`;
-            document.getElementById('membershipModal').classList.remove('hidden');
-        }
-        
-        function closeMembershipModal() {
-            document.getElementById('membershipModal').classList.add('hidden');
-            document.getElementById('membershipForm').reset();
-        }
-        
         // Order modal functions
         function openOrderModal(productName, price) {
             currentProduct = { name: productName, price: price };
@@ -1053,46 +1059,6 @@ Premium Laptop Store`;
         }
         
         // Form submissions with Google Sheets and Fonnte integration
-        document.getElementById('membershipForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const membershipData = {
-                timestamp: new Date().toLocaleString('id-ID'),
-                membership: currentMembership.name,
-                harga: currentMembership.price,
-                nama: formData.get('nama'),
-                email: formData.get('email'),
-                whatsapp: formData.get('whatsapp'),
-                alamat: formData.get('alamat')
-            };
-            
-            // Show loading state
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Mengirim...';
-            submitBtn.disabled = true;
-            
-            // Send to Google Sheets
-            const sheetsSuccess = await sendToGoogleSheets(membershipData, 'membership');
-            
-            // Send WhatsApp notification via Fonnte
-            const fonnteSuccess = await sendFonnteNotification(membershipData, 'membership');
-            
-            // Reset button
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            
-            if (sheetsSuccess || fonnteSuccess) {
-                // Show success modal
-                document.getElementById('successModal').classList.remove('hidden');
-                document.getElementById('successModal').querySelector('p').textContent = 'Terima kasih! Pendaftaran membership Anda telah diterima. Tim kami akan segera menghubungi Anda melalui WhatsApp untuk konfirmasi.';
-                closeMembershipModal();
-            } else {
-                alert('Terjadi kesalahan saat mengirim pendaftaran. Silakan coba lagi atau hubungi kami langsung.');
-            }
-        });
-
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1235,12 +1201,6 @@ Premium Laptop Store`;
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize membership slider
-            updateMembershipSlider();
-            
-            // Auto-advance membership slider
-            setInterval(nextMembershipSlide, 5000);
-            
             // Update total price when quantity changes (modal)
             const modalQuantityInput = document.querySelector('#orderModal input[name="jumlah"]');
             if (modalQuantityInput) {
@@ -1286,10 +1246,7 @@ Premium Laptop Store`;
             if (e.target.id === 'successModal') {
                 closeSuccessModal();
             }
-            if (e.target.id === 'membershipModal') {
-                closeMembershipModal();
-            }
         });
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98bc73de165a7550',t:'MTc1OTk5Nzk2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
