@@ -21,6 +21,7 @@
         }
     </script>
     <style>
+        /* CSS yang sama seperti sebelumnya */
         body {
             box-sizing: border-box;
         }
@@ -1307,53 +1308,57 @@
 
     <script>
         // Google Sheets configuration - GANTI URL INI DENGAN URL GOOGLE APPS SCRIPT ANDA
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzPrlvmJ16XSHspuykFH5JifkRrNGcKFIUwdkjibo6JvuthUR0BSHf6OqIlskVLrfOdpA/exec';
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwELBcU2IKGHbBXfDREQL2oVMDNCjJuiHjGuc3ySF230MYsudIxvAGlXuTzIVBZhqosow/exec';
         
         // Fonnte API Configuration
         const FONNTE_API_KEY = 'Sh2G2EtcU3EQoJspg5Mi'; // Ganti dengan API Key Fonnte Anda
         const FONNTE_URL = 'https://api.fonnte.com/send';
         
-        // Function to send data to Google Sheets
+        // Function to send data to Google Sheets - PERBAIKAN UTAMA
         async function sendToGoogleSheets(data, type) {
             try {
-                // Buat payload yang lebih sederhana
+                // Format data sesuai dengan struktur yang diharapkan Google Apps Script
                 const payload = {
+                    action: 'submitForm',
                     type: type,
-                    data: data,
+                    timestamp: data.timestamp,
+                    nama: data.nama,
+                    email: data.email,
+                    whatsapp: data.whatsapp,
+                    alamat: data.alamat,
+                    membership: data.membership || '',
+                    harga: data.harga || 0,
+                    produk: data.produk || '',
+                    jumlah: data.jumlah || 1,
+                    total: data.total || 0,
+                    catatan: data.catatan || '',
+                    pesan: data.pesan || '',
                     source: 'nal_store_website'
                 };
                 
                 console.log('Mengirim data ke Google Sheets:', payload);
                 
-                // Gunakan fetch dengan timeout
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000); // Timeout 10 detik
-                
+                // Gunakan fetch dengan mode cors untuk bisa membaca response
                 const response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Mode no-cors untuk menghindari CORS issues
+                    mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(payload),
-                    signal: controller.signal
+                    body: JSON.stringify(payload)
                 });
                 
-                clearTimeout(timeoutId);
-                
-                // Dengan mode no-cors, kita tidak bisa membaca response
-                // Jadi kita anggap selalu berhasil
-                console.log('Data berhasil dikirim ke Google Sheets');
-                return true;
+                if (response.ok) {
+                    console.log('Data berhasil dikirim ke Google Sheets');
+                    return true;
+                } else {
+                    console.error('Gagal mengirim data ke Google Sheets:', response.status);
+                    return false;
+                }
                 
             } catch (error) {
-                if (error.name === 'AbortError') {
-                    console.log('Request timeout, tetapi data mungkin tetap terkirim');
-                } else {
-                    console.error('Error mengirim ke Google Sheets:', error);
-                }
-                // Tetap return true karena dengan no-cors kita tidak bisa tahu pasti
-                return true;
+                console.error('Error mengirim ke Google Sheets:', error);
+                return false;
             }
         }
         
@@ -1598,7 +1603,7 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
             closeOrderModal();
         }
         
-        // Form submissions with Google Sheets and Fonnte integration
+        // Form submissions with Google Sheets and Fonnte integration - PERBAIKAN UTAMA
         document.getElementById('membershipForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1613,9 +1618,24 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 alamat: formData.get('alamat')
             };
             
-            // Validasi form
+            // Validasi form yang lebih ketat
             if (!membershipData.nama || !membershipData.email || !membershipData.whatsapp || !membershipData.alamat) {
                 alert('Harap lengkapi semua field yang wajib diisi!');
+                return;
+            }
+            
+            // Validasi email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(membershipData.email)) {
+                alert('Format email tidak valid!');
+                return;
+            }
+            
+            // Validasi nomor WhatsApp
+            const phoneRegex = /^[0-9]{10,15}$/;
+            const cleanPhone = membershipData.whatsapp.replace(/\D/g, '');
+            if (!phoneRegex.test(cleanPhone)) {
+                alert('Format nomor WhatsApp tidak valid!');
                 return;
             }
             
@@ -1636,8 +1656,7 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 
-                if (sheetsSuccess || fonnteSuccess) {
-                    // Show custom success message instead of modal
+                if (sheetsSuccess) {
                     alert('✅ Pendaftaran membership berhasil! Tim kami akan menghubungi Anda via WhatsApp dalam 1x24 jam.');
                     
                     // Reset form dan tutup modal
@@ -1647,12 +1666,7 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                     // Redirect ke halaman home atau tetap di halaman membership
                     showPage('membership');
                 } else {
-                    alert('⚠️ Pendaftaran berhasil dikirim! Jika dalam 24 jam belum ada konfirmasi, silakan hubungi WhatsApp kami langsung.');
-                    
-                    // Tetap reset form dan tutup modal meskipun ada error
-                    this.reset();
-                    closeMembershipModal();
-                    showPage('membership');
+                    alert('⚠️ Gagal mengirim data. Silakan coba lagi atau hubungi WhatsApp kami langsung.');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -1661,12 +1675,7 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 
-                alert('✅ Data Anda telah tercatat! Tim kami akan segera menghubungi untuk proses selanjutnya.');
-                
-                // Tetap lanjutkan proses
-                this.reset();
-                closeMembershipModal();
-                showPage('membership');
+                alert('❌ Terjadi kesalahan sistem. Silakan coba lagi atau hubungi WhatsApp kami langsung.');
             }
         });
 
@@ -1687,6 +1696,12 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 total: currentProduct.price * formData.get('jumlah')
             };
             
+            // Validasi form
+            if (!orderData.nama || !orderData.email || !orderData.whatsapp || !orderData.alamat) {
+                alert('Harap lengkapi semua field yang wajib diisi!');
+                return;
+            }
+            
             // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
@@ -1704,11 +1719,11 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 
-                if (sheetsSuccess || fonnteSuccess) {
+                if (sheetsSuccess) {
                     // Show success modal
                     document.getElementById('successModal').classList.remove('hidden');
                 } else {
-                    alert('Pesanan Anda berhasil Terkirim!!, Tim kami akan segera menginfokan anda melalui Whatsapp.');
+                    alert('⚠️ Gagal mengirim pesanan. Silakan coba lagi atau hubungi WhatsApp kami langsung.');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -1717,7 +1732,7 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 
-                alert('Pesanan Anda berhasil Terkirim!!, Tim kami akan segera menginfokan anda melalui Whatsapp.');
+                alert('❌ Terjadi kesalahan sistem. Silakan coba lagi atau hubungi WhatsApp kami langsung.');
             }
         });
 
@@ -1744,6 +1759,12 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 total: produkHarga * jumlah
             };
             
+            // Validasi form
+            if (!orderData.nama || !orderData.email || !orderData.whatsapp || !orderData.alamat || !orderData.produk) {
+                alert('Harap lengkapi semua field yang wajib diisi!');
+                return;
+            }
+            
             // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
@@ -1761,11 +1782,11 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 
-                if (sheetsSuccess || fonnteSuccess) {
+                if (sheetsSuccess) {
                     // Show success modal
                     document.getElementById('successModal').classList.remove('hidden');
                 } else {
-                    alert('Pesanan Anda berhasil Terkirim!!, Tim kami akan segera menginfokan anda melalui Whatsapp.');
+                    alert('⚠️ Gagal mengirim pesanan. Silakan coba lagi atau hubungi WhatsApp kami langsung.');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -1774,7 +1795,7 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 
-                alert('Pesanan Anda berhasil Terkirim!!, Tim kami akan segera menginfokan anda melalui Whatsapp.');
+                alert('❌ Terjadi kesalahan sistem. Silakan coba lagi atau hubungi WhatsApp kami langsung.');
             }
         });
         
@@ -1789,6 +1810,12 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 whatsapp: formData.get('whatsapp'),
                 pesan: formData.get('pesan')
             };
+            
+            // Validasi form
+            if (!contactData.nama || !contactData.email || !contactData.whatsapp || !contactData.pesan) {
+                alert('Harap lengkapi semua field yang wajib diisi!');
+                return;
+            }
             
             // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
@@ -1807,10 +1834,12 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 
-                if (sheetsSuccess || fonnteSuccess) {
-                    alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+                if (sheetsSuccess) {
+                    alert('✅ Pesan Anda berhasil terkirim! Kami akan segera menghubungi Anda.');
                     this.reset();
-                } 
+                } else {
+                    alert('⚠️ Gagal mengirim pesan. Silakan coba lagi atau hubungi WhatsApp kami langsung.');
+                }
             } catch (error) {
                 console.error('Error:', error);
                 
@@ -1818,8 +1847,7 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 
-                alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
-                this.reset();
+                alert('❌ Terjadi kesalahan sistem. Silakan coba lagi atau hubungi WhatsApp kami langsung.');
             }
         });
         
@@ -1901,4 +1929,3 @@ Segera hubungi calon member untuk konfirmasi dan proses pembayaran.
     </script>
 </body>
 </html>
-
